@@ -74,7 +74,9 @@ function onLoad( save_state )
       ExploreValueManager.Load( saveState.ExploreValues )
       TerraformValueManager.Load( saveState.TerraformValues )
 
-      GameUi.Layout()
+      if (GameState.HasStarted() == false) then
+        GameUi.Layout()
+      end
 
       Log.Mandatory( "Initialization Complete" )
     end,
@@ -86,7 +88,7 @@ function onSave()
   local state = {
     GameState = GameState.Save(),
     ExploreValues = ExploreValueManager.Save(),
-    --TerraformValues = TerraformValueManager.Save()
+    TerraformValues = TerraformValueManager.Save()
   }
 
   local json = JSON.encode( state )

@@ -48,7 +48,7 @@ function GameState.RemoveFaction( factionId )
 end
 
 function GameState.Save()
-  --Log.ModuleTrace( ModuleName, "Save" )
+  Log.ModuleTrace( ModuleName, "Save" )
 
   return {
     game_started = GameStarted,
