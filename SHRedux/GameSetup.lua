@@ -5,7 +5,6 @@ local Log = require("SHRedux/Log")
 local Util = require("SHRedux/Util")
 local PlanetData = require("SHRedux/Data/PlanetData")
 local ExploreValueManager = require("SHRedux/Managers/ExploreValueManager")
-local SnapManager = require("SHRedux/Managers/SnapManager")
 local WorldTagDescriptions = require("SHRedux/Data/WorldTagDescriptions")
 local MoonData = require("SHRedux/Data/MoonData")
 local DecalManager = require("SHRedux/Managers/DecalManager")
@@ -87,21 +86,39 @@ function GameSetup.StartGame( Factions )
   Wait.frames(
     function()
       local worldTileBag = Util.GetObjectByTag( "worldtile_Bag" )
+      if ( worldTileBag == nil ) then
+        error( "Unable to locate object: worldtile_Bag" )
+      end
       worldTileBag.shuffle()
 
       local biologyBag = Util.GetObjectByTag( "bag_Biology" )
+      if ( biologyBag == nil ) then
+        error( "Unable to locate object: bag_Biology" )
+      end
       biologyBag.shuffle()
 
       local engineeringBag = Util.GetObjectByTag( "bag_Engineering" )
+      if ( engineeringBag == nil ) then
+        error( "Unable to locate object: bag_Engineering" )
+      end
       engineeringBag.shuffle()
 
       local physicsBag = Util.GetObjectByTag( "bag_Physics" )
+      if ( physicsBag == nil ) then
+        error( "Unable to locate object: bag_Physics" )
+      end
       physicsBag.shuffle()
 
       local basesBag = Util.GetObjectByTag( "bag_NPFBases" )
+      if ( basesBag == nil ) then
+        error( "Unable to locate object: bag_NPFBases" )
+      end
       basesBag.shuffle()
 
       local tradeBag = Util.GetObjectByTag( "bag_TradeTokens" )
+      if ( tradeBag == nil ) then
+        error( "Unable to locate object: bag_TradeTokens" )
+      end
       tradeBag.shuffle()
     end,
   20
@@ -393,6 +410,9 @@ function GameSetup.LayoutResearchTokens( Factions )
   Log.ModuleTrace( ModuleName, "LayoutResearchTokens" )
 
   local board = Util.GetObjectByTag( "technologyboard" )
+  if ( board == nil ) then
+    error( "Unable to locate object: technologyboard" )
+  end
   local boardPosition = board.getPosition()
 
   local index = 0
@@ -506,6 +526,9 @@ function GameSetup.SetInitiative( Factions )
     if ( Util.Contains( Factions, factionId ) ) then
       local flagSourceId = "flagsource_" .. factionId
       local flagSource = Util.GetObjectByTag( flagSourceId )
+      if ( flagSource == nil ) then
+        error( "Unable to locate object: " .. flagSourceId )
+      end
       local xOffset = TurnBoardInitiativeSnaps[index]
       local flagPosition = { turnboardPosition[1] + xOffset, turnboardPosition[2] + 0.10, turnboardPosition[3] - 2.61 }
       local flag = flagSource.takeObject({
@@ -520,6 +543,9 @@ end
 
 function GameSetup.GetYearPosition( year )
   local turnBoard = Util.GetObjectByTag( "turnboard" )
+  if ( turnBoard == nil ) then
+    error( "Unable to locate object: turnboard" )
+  end
   local boardPosition = turnBoard.getPosition()
   local turnCenter = { boardPosition[1], boardPosition[2], boardPosition[3] + 1.80 }
 
@@ -534,6 +560,9 @@ end
 
 function GameSetup.GetDecadePosition( decade )
   local turnBoard = Util.GetObjectByTag( "turnboard" )
+  if ( turnBoard == nil ) then
+    error( "Unable to locate object: turnboard" )
+  end
   local boardPosition = turnBoard.getPosition()
   local turnCenter = { boardPosition[1], boardPosition[2], boardPosition[3] + 1.80 }
 
@@ -985,8 +1014,11 @@ function GameSetup.SetMoonDescription( moonName, moonData )
 
   local moonId = GameSetup.GetMoonId( moonName )
   local tile = Util.GetObjectByTag( moonId )
+  if ( tile == nil ) then
+    error( "Unable to locate object: " .. moonId )
+  end
 
-  local description = nil
+  local description = ""
   if ( moonData.has_life ) then
     description = "Life " .. tostring( moonData.life ) .. "%"
   end
@@ -1014,7 +1046,7 @@ function GameSetup.SetPlanetDescription( planetName, planetData )
     return
   end
 
-  local description = nil
+  local description = ""
   if ( planetData.has_life ) then
     description = "Life " .. tostring( planetData.life ) .. "%"
   end

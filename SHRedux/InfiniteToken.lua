@@ -8,6 +8,9 @@ function InfiniteToken.PutAt( sourceId, tokenPosition )
   Log.ModuleTrace( ModuleName, "PutAt" )
 
   local container = Util.GetObjectByTag( sourceId )
+  if ( container == nil ) then
+    error( "Unable to locate object: " .. sourceId )
+  end
   local token = container.takeObject({
       position = tokenPosition,
       rotation = { 0.00, 180.00, 0.00 },

@@ -19,7 +19,7 @@ function ZoneManager.Add( zoneId, zonePosition, zoneScale, zoneTags )
     })
     local tags = Util.Append( zoneTags, zoneId )
     tags = Util.Append( tags, "zone" )
-    zone.SetTags( tags )
+    zone.setTags( tags )
   end
 end
 
@@ -38,14 +38,16 @@ function ZoneManager.AddHidden( zoneId, zonePosition, zoneScale, zoneTags, colou
     })
     local tags = Util.Append( zoneTags, zoneId )
     tags = Util.Append( tags, "zone" )
-    zone.SetTags( tags )
+    zone.setTags( tags )
     zone.setValue( colour )
   end
 end
 
 function ZoneManager.Remove( zoneId )
   local zone = Util.GetObjectByTags( { "zone", zoneId } )
-  destroyObject( zone )
+  if ( zone ~= nil ) then
+    destroyObject( zone )
+  end
 end
 
 return ZoneManager
