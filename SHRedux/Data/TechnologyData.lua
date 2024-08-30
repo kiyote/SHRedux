@@ -267,10 +267,10 @@ local TechnologyData = {
   },
   {
     id = "technology_Terraforming",
-    url = "https://steamusercontent-a.akamaihd.net/ugc/1785091954057982664/417EADE7F8D7C4A2FB22661C77DD96449E583056/",
+    url = "https://steamusercontent-a.akamaihd.net/ugc/2388684061157758596/0C85FC7C22225DA55A1AB0374F3EC239F9F528DC/",
     position = { 1.10, 0.10, 6.12 },
     name = "Terraforming",
-    description = "Terraform Points Cost 4 Physics"
+    description = "Terraform Points Cost 4 Supplies"
   },
   {
     id = "technology_SpaceRefining",
@@ -428,10 +428,10 @@ local TechnologyData = {
   },
   {
     id = "technology_AtmosphereProcessing",
-    url = "https://steamusercontent-a.akamaihd.net/ugc/1785091954057979791/E8C6B4A9C556B52E87D5DBB2355187D6F6820BF6/",
+    url = "https://steamusercontent-a.akamaihd.net/ugc/2388684061157758498/498315BA9629D168B8B1DC048AEAC6AB8C5EFBDB/",
     position = { 4.13, 0.10, 4.97 },
     name = "Atmosphere Processing",
-    description = "Terraforming Points Costs 3 Physics"
+    description = "Terraforming Points Costs 3 Supplies"
   },
   {
     id = "technology_InterstellarColonizerHabitation",
