@@ -65,12 +65,19 @@ end
 function onLoad( save_state )
   local saveState = JSON.decode( save_state ) or {}
 
-  GameSetup.LayoutTable()
-  SetupManager.LayoutTable()
+  if (saveState == nil) then
+    return
+  end
+
+  GameState.Load( saveState.GameState )
+
+  if (GameState.HasStarted() == false) then
+    GameSetup.LayoutTable()
+    SetupManager.LayoutTable()
+  end
 
   Wait.frames(
     function()
-      GameState.Load( saveState.GameState )
       ExploreValueManager.Load( saveState.ExploreValues )
       TerraformValueManager.Load( saveState.TerraformValues )
 
